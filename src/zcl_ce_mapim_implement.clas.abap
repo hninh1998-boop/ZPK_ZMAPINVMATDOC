@@ -822,6 +822,10 @@ CLASS zcl_ce_mapim_implement IMPLEMENTATION.
         ON g~MaterialDocument = a~matdoc
         AND g~MaterialDocumentItem = a~matdocitem
 
+    LEFT JOIN I_MaterialDocumentHeader_2 AS h
+        ON h~MaterialDocumentYear = a~grfiscalyear
+        AND h~MaterialDocument = a~MatDoc
+
     FIELDS
         "Key fields
         a~PONo,
@@ -910,7 +914,10 @@ CLASS zcl_ce_mapim_implement IMPLEMENTATION.
         END AS PONetprice,
         c~DocumentCurrency AS POCurrency,
         g~StorageLocation,
-        g~\_StorageLocation-StorageLocationName
+        g~\_StorageLocation-StorageLocationName,
+
+        g~MaterialDocumentItemText AS ItemText,
+        h~MaterialDocumentHeaderText AS HeaderText
     INTO TABLE @DATA(lt_bases).
 
     "3.1. Get BP Text
@@ -1135,6 +1142,10 @@ CLASS zcl_ce_mapim_implement IMPLEMENTATION.
         grcategory = ls_key-grcategory
         ivcategory = ls_key-ivcategory.
       IF sy-subrc = 0.
+        "Dev/NinhNH/ZMapIM/Add field item + header text - v8
+        <lfs_result>-ItemText = ls_base-ItemText.
+        <lfs_result>-HeaderText = ls_base-HeaderText.
+
         "Dev/NinhNH/ZMapIM/Add 3 fields PO+INV Net Price+Sloc - v6
         <lfs_result>-PONetprice = ls_base-ponetprice.
         <lfs_result>-POCurrency = ls_base-POCurrency.

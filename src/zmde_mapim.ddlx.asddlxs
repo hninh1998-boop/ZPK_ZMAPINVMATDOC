@@ -146,6 +146,18 @@ annotate entity zce_mapim with
   @Consumption.filter.hidden: true
   InvOpenQty;
 
+  @EndUserText.label: 'Item Text'
+  @UI.lineItem: [{ position: 161 }]
+  @UI.identification: [{ position: 161 }]
+  @Consumption.filter.hidden: true
+  ItemText;
+
+  @EndUserText.label: 'Header Text'
+  @UI.lineItem: [{ position: 162 }]
+  @UI.identification: [{ position: 162 }]
+  @Consumption.filter.hidden: true
+  HeaderText;
+
   @EndUserText.label: 'Material Code'
   @UI.lineItem: [{ position: 170 }]
   @UI.identification: [{ position: 170 }]

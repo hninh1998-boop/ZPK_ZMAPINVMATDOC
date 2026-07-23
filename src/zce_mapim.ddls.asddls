@@ -76,4 +76,7 @@ define root custom entity zce_mapim
 
       GhiChu               : abap.string;
 
+      ItemText             : sgtxt; // I_MaterialDocumentItem_2-MaterialDocumentItemText
+      HeaderText           : bktxt; // I_MaterialDocumentHeader_2-MaterialDocumentHeaderText
+
 }
